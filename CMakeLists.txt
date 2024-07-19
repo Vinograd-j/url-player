@@ -13,4 +13,6 @@ set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
 add_executable(url_player main.cpp)
 
-target_link_libraries(url_player tgui sfml-system sfml-graphics sfml-window sfml-main)
+target_link_libraries(url_player PRIVATE tgui sfml-system sfml-graphics sfml-window sfml-main)
+
+add_subdirectory(ui)
