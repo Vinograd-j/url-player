@@ -25,9 +25,10 @@ bool runExample(tgui::BackendGui& gui)
 
 int main()
 {
-    sf::RenderWindow window{ {800, 600}, "TGUI example - SFML_GRAPHICS backend" };
+    sf::RenderWindow window{ {300, 500}, "TGUI example - SFML_GRAPHICS backend" };
 
     tgui::Gui gui{window};
+
     if (runExample(gui))
         gui.mainLoop();
 }

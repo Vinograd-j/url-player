@@ -1,14 +1,16 @@
 #pragma once
 
 #include <TGUI/Widgets/Panel.hpp>
-#include <utility>
+#include <TGUI/Backend/SFML-Graphics.hpp>
 
 class MusicList
 {
 
 private:
 
-    tgui::Panel _panel;
+    tgui::Panel::Ptr _panel;
+
+private:
 
     tgui::Layout2d _size;
 
@@ -18,14 +20,18 @@ private:
 
 public:
 
-    MusicList(tgui::Layout2d size, tgui::Layout2d position, tgui::Layout2d  buttonSize) : _size(std::move(size)), _position(std::move(position)), _buttonSize(std::move(buttonSize)) {}
+    explicit MusicList(const tgui::Layout2d& size, tgui::Layout2d  position, tgui::Layout2d   buttonSize);
+
+    ~MusicList() = default;
 
 public:
 
-    void AddButton(const std::string& text, const tgui::Color& color, const std::function<void>& onClick);
+    void AddButton(const std::string& text, const tgui::Color& color, const std::function<void>& onClick) const;
+
+    void AddToGui(tgui::Gui& gui) const { gui.add(_panel); }
 
 private:
 
-    size_t GetButtonsCount() const { return _panel.getWidgets().size(); }
+    size_t GetButtonsCount() const { return _panel->getWidgets().size(); }
 
 };

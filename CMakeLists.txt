@@ -11,7 +11,13 @@ find_package(TGUI REQUIRED)
 
 set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
-add_executable(url_player main.cpp)
+add_executable(url_player main.cpp
+        storage/include/storage.h
+        storage/src/json-storage.cpp
+        storage/include/json-storage.h
+        storage/src/storage-file.cpp
+        storage/include/storage-file.h
+)
 
 target_link_libraries(url_player PRIVATE tgui sfml-system sfml-graphics sfml-window sfml-main)
 
