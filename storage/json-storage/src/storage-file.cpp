@@ -9,11 +9,11 @@ StorageFile::StorageFile(std::string path) : _path(std::move(path))
     InitializeStorage();
 }
 
-void StorageFile::WriteJson(const std::string& json) const
+void StorageFile::RewriteJson(const std::string& json) const
 {
     std::ofstream out;
 
-    out.open(_path);
+    out.open(_path, std::ofstream::out | std::ofstream::trunc);
 
     if (!out.is_open())
         throw std::filesystem::filesystem_error("Cannot open the storage file.", std::error_code());
@@ -25,15 +25,23 @@ std::string StorageFile::ReadJson() const
 {
     std::ifstream in;
 
-    in.open(_path);
+    in.open(_path, std::ifstream::in);
 
     if (!in.is_open())
         throw std::filesystem::filesystem_error("Cannot open the storage file.", std::error_code());
 
     std::stringstream buffer;
-    buffer << in.rdbuf();
+    std::string line;
+    while (std::getline(in, line))
+    {
+        buffer << line << '\n';
+    }
 
-    return buffer.str();
+    in.close();
+
+    std::string content = buffer.str();
+
+    return content;
 }
 
 void StorageFile::InitializeStorage() const

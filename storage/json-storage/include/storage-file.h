@@ -15,7 +15,7 @@ public:
 
 public:
 
-    void WriteJson(const std::string& json) const;
+    void RewriteJson(const std::string& json) const;
     std::string ReadJson() const;
 
 private:

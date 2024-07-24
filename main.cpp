@@ -1,34 +1,23 @@
-#include <TGUI/TGUI.hpp>
-#include <TGUI/Backend/SFML-Graphics.hpp>
+#include <filesystem>
 
-void onClick() {
-    std::cout << "HELLO@@@!!";
+#include "music-storage/include/json-music.h"
+#include "ui/include/menu.h"
+#include "ui/ui-config/include/json-ui-config.h"
+
+JsonUIConfig loadConfig()
+{
+    return JsonUIConfig("resources/ui-config.json");
 }
 
-bool runExample(tgui::BackendGui& gui)
+JsonMusic loadMusic()
 {
-
-    tgui::Button::Ptr button = tgui::Button::create("123");
-
-    button->setSize(100, 100);
-
-    button->setOrigin(0.5, 0.5);
-
-    button->setPosition(400, 300);
-
-    button->onClick(&onClick);
-
-    gui.add(button);
-
-    return true;
+    return JsonMusic("resources/music.json");
 }
 
 int main()
 {
-    sf::RenderWindow window{ {300, 500}, "TGUI example - SFML_GRAPHICS backend" };
 
-    tgui::Gui gui{window};
+    Menu menu(loadMusic(), loadConfig());
+    menu.Open();
 
-    if (runExample(gui))
-        gui.mainLoop();
 }
