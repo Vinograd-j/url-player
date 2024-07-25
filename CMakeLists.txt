@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 3.28)
 project(url_player)
 
 set(CMAKE_CXX_STANDARD 17)
-
+set(CMAKE_GENERATOR_PLATFORM x86)
 set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
 set(SFML_DIR ${SFML_PATH})
-find_package(SFML COMPONENTS system window graphics REQUIRED PATHS ${SFML_DIR})
+find_package(SFML REQUIRED COMPONENTS system window graphics PATHS ${SFML_DIR})
 
 set(TGUI_DIR ${TGUI_PATH})
 find_package(TGUI REQUIRED PATHS ${TGUI_DIR})
@@ -22,7 +22,7 @@ add_subdirectory(storage)
 add_subdirectory(music-storage)
 add_subdirectory(ui)
 
-target_link_libraries(url_player PRIVATE ui json-storage music-storage)
+target_link_libraries(url_player PRIVATE tgui ui json-storage music-storage)
 
 set_target_properties(url_player PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/url-player/bin)
 

@@ -36,7 +36,7 @@ void Menu::InitializeButtons()
 void Menu::LoadSongsList()
 {
 
-    Config config = _config.DeserializeConfig();
+    UIConfig config = _config.DeserializeConfig();
 
     _musicList = std::make_unique<MusicList>(config.GetMusicListSize(), config.GetMusicListPosition(), config.GetMusicListButtonSize());
 

@@ -1,9 +1,9 @@
-#include "../../ui-config/include/json-ui-config.h"
+#include "json-ui-config.h"
 
 #include "button.h"
-#include "../storage/json/json.hpp"
+#include "json.hpp"
 
-void JsonUIConfig::SerializeConfig(const Config& config)
+void JsonUIConfig::SerializeConfig(const UIConfig& config)
 {
     nlohmann::json json;
     const std::vector<Button>& buttons = config.GetButtons();
@@ -18,7 +18,7 @@ void JsonUIConfig::SerializeConfig(const Config& config)
     _storage.RewriteJson(json.dump());
 }
 
-Config JsonUIConfig::DeserializeConfig()
+UIConfig JsonUIConfig::DeserializeConfig()
 {
     nlohmann::json json = nlohmann::json::parse(_storage.ReadJson());
 
@@ -41,5 +41,5 @@ Config JsonUIConfig::DeserializeConfig()
     if (json.contains("musicListButtonSize") && json["musicListButtonSize"].is_array())
         musicListButtonSize = tgui::Layout2d{ json["musicListButtonSize"][0].get<float>(), json["musicListButtonSize"][1].get<float>() };
 
-    return Config(buttons, musicListSize, musicListPosition, musicListButtonSize);
+    return UIConfig( buttons, musicListSize, musicListPosition, musicListButtonSize);
 }

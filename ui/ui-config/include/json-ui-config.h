@@ -2,7 +2,7 @@
 
 #include "ui-config.h"
 #include <string>
-#include "../storage/json-storage/include/storage-file.h"
+#include "storage-file.h"
 
 class JsonUIConfig
 {
@@ -17,7 +17,7 @@ public:
 
 public:
 
-    void SerializeConfig(const Config& config);
-    Config DeserializeConfig();
+    void SerializeConfig(const UIConfig& config);
+    UIConfig DeserializeConfig();
 
 };
