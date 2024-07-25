@@ -20,5 +20,10 @@
       "position": { "x": 75, "y": 465 },
       "text": "ADD NEW SONG"
     }
-  ]
+  ],
+
+  "musicListSize": [200.0, 333.333],
+  "musicListPosition": [50.0, 83.3335],
+  "musicListButtonSize": [166.6667, 30.0]
+
 }

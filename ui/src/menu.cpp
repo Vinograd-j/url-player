@@ -35,15 +35,14 @@ void Menu::InitializeButtons()
 
 void Menu::LoadSongsList()
 {
-    const tgui::Layout2d MUSIC_LIST_SIZE(WINDOW_WIDTH / 1.5, WINDOW_HEIGHT / 1.5);
-    const tgui::Layout2d MUSIC_LIST_POSITION( (WINDOW_WIDTH - WINDOW_WIDTH / 1.5) / 2, (WINDOW_HEIGHT - WINDOW_HEIGHT / 1.5) / 2);
-    const tgui::Layout2d MUSIC_LIST_BUTTON_SIZE( 300 / 1.8, 30);
 
-    _musicList = std::make_unique<MusicList>(MUSIC_LIST_SIZE, MUSIC_LIST_POSITION, MUSIC_LIST_BUTTON_SIZE);
+    Config config = _config.DeserializeConfig();
 
-    auto desirialize_storage = _music.DesirializeStorage();
+    _musicList = std::make_unique<MusicList>(config.GetMusicListSize(), config.GetMusicListPosition(), config.GetMusicListButtonSize());
 
-    for (const auto& song : desirialize_storage.GetSongs())
+    auto musicStorage = _music.DesirializeStorage();
+
+    for (const auto& song : musicStorage.GetSongs())
         _musicList->AddButton(song.GetTitle(), tgui::Color::White, [this]() { Menu::OnSongChoise(); });
 
     _musicList->AddToGui(*_gui);

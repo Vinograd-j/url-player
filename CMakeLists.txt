@@ -24,15 +24,12 @@ add_subdirectory(ui)
 
 target_link_libraries(url_player PRIVATE ui json-storage music-storage)
 
-# Указываем, что выводимые файлы будут в папке bin
 set_target_properties(url_player PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/url-player/bin)
 
-# Создание папок для статических библиотек
 set_target_properties(json-storage PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/url-player/storage)
 set_target_properties(music-storage PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/url-player/music-storage)
 set_target_properties(ui PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/url-player/ui)
 
-# Создание папки resources и копирование туда файлов
 add_custom_command(TARGET url_player POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory
         ${CMAKE_BINARY_DIR}/url-player/bin/resources
