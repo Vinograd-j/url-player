@@ -22,10 +22,11 @@ public:
     explicit Button(const tgui::Layout2d& size, const tgui::Layout2d& position, const std::string& text);
     explicit Button(const nlohmann::json& json);
 
+    Button() = default;
+
 public:
 
-    template<typename T>
-    void onPress(const std::function<T>& onPress);
+    void onPress(const std::function<void()>& onPress);
 
     nlohmann::json ToJson() const;
 
@@ -36,9 +37,3 @@ private:
     void Initialize();
 
 };
-
-template<typename T>
-void Button::onPress(const std::function<T>& onPress)
-{
-    _button->onPress(onPress);
-}

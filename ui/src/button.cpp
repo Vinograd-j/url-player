@@ -16,6 +16,11 @@ Button::Button(const nlohmann::json& json) :
     Initialize();
 }
 
+void Button::onPress(const std::function<void()>& onPress)
+{
+    _button->onPress(onPress);
+}
+
 nlohmann::json Button::ToJson() const
 {
     return nlohmann::json

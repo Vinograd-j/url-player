@@ -18,6 +18,7 @@ set(SFML_INCLUDE_DIR C:/libs/SFML/include)
 
 add_executable(url_player WIN32 main.cpp)
 
+add_subdirectory(url-player)
 add_subdirectory(storage)
 add_subdirectory(music-storage)
 add_subdirectory(ui)

@@ -1,10 +1,11 @@
 #pragma once
 
 #include <json-music.h>
-#include <json-ui-config.h>
+#include <json-menu-config.h>
 #include <memory>
+#include <music-panel.h>
+
 #include "music_list.h"
-#include <ui-config.h>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <TGUI/Backend/SFML-Graphics.hpp>
 
@@ -16,8 +17,10 @@ private:
     std::unique_ptr<sf::RenderWindow> _window;
     std::unique_ptr<tgui::Gui> _gui;
 
-    JsonUIConfig _config;
+    JsonMenuConfig _config;
     JsonMusic _music;
+
+    MusicPanel _musicPanel;
 
 private:
 
@@ -38,13 +41,15 @@ private:
 
 public:
 
-    explicit Menu(const JsonMusic& music, const JsonUIConfig& config);
+    explicit Menu(const JsonMusic& music, const JsonMenuConfig& config, const JsonMusicPanelConfig& musicPanelConfigPath);
 
 public:
 
-    void AddMusic(const std::string& url);
+    void OpenMusicPanel();
 
     void Open();
+
+    void Close();
 
 private:
 

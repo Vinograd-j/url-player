@@ -3,7 +3,7 @@
 #include <vector>
 #include "button.h"
 
-class UIConfig
+class MenuConfig
 {
 
 private:
@@ -16,14 +16,14 @@ private:
 
 public:
 
-    UIConfig(const std::vector<Button>& buttons, const tgui::Layout2d& music_list_size, const tgui::Layout2d& music_list_position,
+    MenuConfig(const std::vector<Button>& buttons, const tgui::Layout2d& music_list_size, const tgui::Layout2d& music_list_position,
              const tgui::Layout2d& music_list_button_size):
                                                            _buttons(buttons),
                                                            _musicListSize(music_list_size),
                                                            _musicListPosition(music_list_position),
                                                            _musicListButtonSize(music_list_button_size) {}
 
-    UIConfig() = default;
+    MenuConfig() = default;
 
 public:
 

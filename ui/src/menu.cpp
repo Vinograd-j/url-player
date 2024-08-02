@@ -1,9 +1,6 @@
 #include "menu.h"
 
-Menu::Menu(const JsonMusic& music, const JsonUIConfig& config) :  _config(config), _music(music)
-{
-    Initialize();
-}
+Menu::Menu(const JsonMusic& music, const JsonMenuConfig& config, const JsonMusicPanelConfig& musicPanelConfigPath) :  _config(config), _music(music), _musicPanel(musicPanelConfigPath, music){}
 
 void Menu::Initialize()
 {
@@ -14,7 +11,7 @@ void Menu::Initialize()
 
 void Menu::InitializeGui()
 {
-    _window =  std::make_unique<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Vinograd URL-PLAYER", sf::Style::Titlebar | sf::Style::Close);
+    _window = std::make_unique<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Vinograd URL-PLAYER", sf::Style::Titlebar | sf::Style::Close);
     _gui = std::make_unique<tgui::Gui>(*_window);
 }
 
@@ -31,12 +28,14 @@ void Menu::InitializeButtons()
     _nextButton->AddToGui(*_gui);
     _previousButton->AddToGui(*_gui);
     _addSongButton->AddToGui(*_gui);
+
+    _addSongButton->onPress([this]() { OpenMusicPanel(); });
 }
 
 void Menu::LoadSongsList()
 {
 
-    UIConfig config = _config.DeserializeConfig();
+    MenuConfig config = _config.DeserializeConfig();
 
     _musicList = std::make_unique<MusicList>(config.GetMusicListSize(), config.GetMusicListPosition(), config.GetMusicListButtonSize());
 
@@ -48,11 +47,42 @@ void Menu::LoadSongsList()
     _musicList->AddToGui(*_gui);
 }
 
+void Menu::OpenMusicPanel()
+{
+    _musicPanel.Open();
+}
+
 void Menu::OnSongChoise()
 {
 }
 
 void Menu::Open()
 {
-    _gui->mainLoop();
+    Initialize();
+
+    sf::Event event;
+    while (_window->isOpen())
+    {
+        while (_window->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                Close();
+
+            _gui->handleEvent(event);
+        }
+
+        if (_window->hasFocus())
+        {
+            _window->clear({240, 240, 240});
+            _gui->draw();
+            _window->display();
+        }
+
+    }
+
+}
+
+void Menu::Close()
+{
+    _window->close();
 }

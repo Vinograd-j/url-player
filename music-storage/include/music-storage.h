@@ -17,4 +17,6 @@ public:
 
     const std::vector<Song>& GetSongs() const { return _songs; }
 
+    void AddSong(const Song& song) { _songs.push_back(song); }
+
 };

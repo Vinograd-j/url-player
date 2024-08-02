@@ -1,0 +1,20 @@
+{
+  "buttons": [
+    {
+      "size": { "width": 70, "height": 25 },
+      "position": { "x": 215, "y": 200 },
+      "text": "SAVE"
+    }
+  ],
+
+  "textPosition": [85.0, 20.0],
+  "textSize": [400.0, 20.0],
+  "textLetterSize": [15],
+  "text": ["Первая строка - название, вторая - ссылка"],
+
+  "titleTextBoxPosition": [175.0, 70.0],
+  "titleTextBoxSize": [166.6667, 30.0],
+
+  "urlTextBoxPosition": [75, 110.0],
+  "urlTextBoxSize": [350, 30.0]
+}
