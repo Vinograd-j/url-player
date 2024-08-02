@@ -1,10 +1,5 @@
 #include "music-panel.h"
 
-MusicPanel::MusicPanel(const JsonMusicPanelConfig& configPath, const JsonMusic& musicStoragePath) : _config(configPath), _musicStorage(musicStoragePath)
-{
-
-}
-
 void MusicPanel::Initialize()
 {
     CreateGUI();
@@ -100,6 +95,7 @@ void MusicPanel::Open()
 
 void MusicPanel::Close()
 {
+    _onClosed();
     _window->close();
 }
 

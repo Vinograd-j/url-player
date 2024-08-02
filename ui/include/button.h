@@ -30,7 +30,7 @@ public:
 
     nlohmann::json ToJson() const;
 
-    void AddToGui(tgui::Gui& gui) { gui.add(_button); }
+    void AddToGui(tgui::Gui& gui) const { gui.add(_button); }
 
 private:
 

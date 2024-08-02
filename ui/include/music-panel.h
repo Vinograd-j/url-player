@@ -13,6 +13,8 @@ private:
     JsonMusicPanelConfig _config;
     JsonMusic _musicStorage;
 
+    std::function<void()> _onClosed;
+
 private:
 
     std::unique_ptr<sf::RenderWindow> _window;
@@ -36,7 +38,7 @@ private:
 
 public:
 
-    explicit MusicPanel(const JsonMusicPanelConfig& config, const JsonMusic& musicStoragePath);
+    explicit MusicPanel(const JsonMusicPanelConfig& config, const JsonMusic& musicStoragePath, const std::function<void()>& onClosed) : _config(config), _musicStorage(musicStoragePath), _onClosed(onClosed) {}
 
     void Initialize();
 
@@ -61,6 +63,7 @@ private:
         bool ValidateURL(const std::string& string) const;
 
         bool ValidateTitle(const std::string& string) const;
+
     };
 
 };

@@ -41,7 +41,10 @@ private:
 
 public:
 
-    explicit Menu(const JsonMusic& music, const JsonMenuConfig& config, const JsonMusicPanelConfig& musicPanelConfigPath);
+    explicit Menu(const JsonMusic& music, const JsonMenuConfig& config, const JsonMusicPanelConfig& musicPanelConfigPath) :
+                                                                                                                            _config(config),
+                                                                                                                            _music(music),
+                                                                                                                            _musicPanel(musicPanelConfigPath, music, [this](){ OnMusicPanelClosed(); }) {}
 
 public:
 
@@ -54,10 +57,12 @@ public:
 private:
 
     void Initialize();
-    void InitializeGui();
+    void CreateGUI();
 
-    void InitializeButtons();
+    void CreateButtons();
     void LoadSongsList();
+
+    void OnMusicPanelClosed();
 
     void OnSongChoise();
 

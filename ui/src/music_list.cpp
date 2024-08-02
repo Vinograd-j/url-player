@@ -3,10 +3,10 @@
 #include <TGUI/Widgets/Button.hpp>
 
 MusicList::MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize)  :
-                                                                                                       _panel(tgui::ScrollablePanel::create(size)),
-                                                                                                       _size(size),
-                                                                                                       _position(std::move(position)),
-                                                                                                       _buttonSize(std::move(buttonSize))
+                                                                                                                     _panel(tgui::ScrollablePanel::create(size)),
+                                                                                                                     _size(size),
+                                                                                                                     _position(std::move(position)),
+                                                                                                                     _buttonSize(std::move(buttonSize))
 {
     _panel->setPosition(_position);
     _panel->setHorizontalScrollbarPolicy(tgui::Scrollbar::Policy::Never);

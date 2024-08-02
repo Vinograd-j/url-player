@@ -33,6 +33,8 @@ public:
                                                                                                                                                                          _urlBoxSize(urlTextBoxSize),
                                                                                                                                                                          _submitButton(submitButton) {}
 
+public:
+
     const std::string& GetText() const { return _text; }
 
     const tgui::Layout2d& GetTextPosition() const { return _textPosition; }

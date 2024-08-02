@@ -1,21 +1,19 @@
 #include "menu.h"
 
-Menu::Menu(const JsonMusic& music, const JsonMenuConfig& config, const JsonMusicPanelConfig& musicPanelConfigPath) :  _config(config), _music(music), _musicPanel(musicPanelConfigPath, music){}
-
 void Menu::Initialize()
 {
-    InitializeGui();
-    InitializeButtons();
+    CreateGUI();
+    CreateButtons();
     LoadSongsList();
 }
 
-void Menu::InitializeGui()
+void Menu::CreateGUI()
 {
     _window = std::make_unique<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Vinograd URL-PLAYER", sf::Style::Titlebar | sf::Style::Close);
     _gui = std::make_unique<tgui::Gui>(*_window);
 }
 
-void Menu::InitializeButtons()
+void Menu::CreateButtons()
 {
     auto buttons = _config.DeserializeConfig().GetButtons();
 
@@ -45,6 +43,11 @@ void Menu::LoadSongsList()
         _musicList->AddButton(song.GetTitle(), tgui::Color::White, [this]() { Menu::OnSongChoise(); });
 
     _musicList->AddToGui(*_gui);
+}
+
+void Menu::OnMusicPanelClosed()
+{
+    LoadSongsList();
 }
 
 void Menu::OpenMusicPanel()

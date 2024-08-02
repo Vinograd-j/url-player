@@ -18,6 +18,7 @@ public:
 public:
 
     void SerializeConfig(const MenuConfig& config) const;
+
     MenuConfig DeserializeConfig() const;
 
 };
