@@ -1,22 +1,6 @@
 {
   "songs":[
-    { "title": "Imagine", "url": "https://example.com/imagine.mp3" },
-    { "title": "Hey Jude", "url": "https://example.com/heyjude.mp3" },
-    { "title": "Bohemian Rhapsody", "url": "https://example.com/bohemianrhapsody.mp3" },
-    { "title": "Stairway to Heaven", "url": "https://example.com/stairwaytoheaven.mp3" },
-    { "title": "Hotel California", "url": "https://example.com/hotelcalifornia.mp3" },
-    { "title": "Sweet Child O' Mine", "url": "https://example.com/sweetchildomine.mp3" },
-    { "title": "Smells Like Teen Spirit", "url": "https://example.com/smellsliketeenspirit.mp3" },
-    { "title": "Billie Jean", "url": "https://example.com/billiejean.mp3" },
-    { "title": "Let It Be", "url": "https://example.com/letitbe.mp3" },
-    { "title": "Моргенштерн", "url": "https://example.com/borntorun.mp3" },
-    { "title": "Born to Run", "url": "https://example.com/borntorun.mp3" },
-    { "title": "Born to Run", "url": "https://example.com/borntorun.mp3" },
-    { "title": "Born to Run", "url": "https://example.com/borntorun.mp3" },
-    { "title": "Born to Run", "url": "https://example.com/borntorun.mp3" },
-    { "title": "Born to Run", "url": "https://example.com/borntorun.mp3" },
-    { "title": "Born to Run", "url": "https://example.com/borntorun.mp3" },
-    { "title": "Born to Run", "url": "https://example.com/borntorun.mp3" }
+
   ]
 }
 

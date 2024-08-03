@@ -80,9 +80,7 @@ void Menu::Open()
             _gui->draw();
             _window->display();
         }
-
     }
-
 }
 
 void Menu::Close()

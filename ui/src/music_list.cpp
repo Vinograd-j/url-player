@@ -13,8 +13,8 @@ MusicList::MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position,
     _panel->setVerticalScrollbarPolicy(tgui::Scrollbar::Policy::Always);
 }
 
-void MusicList::AddButton(const std::string& text, const tgui::Color& color, const std::function<void()>& onClick) const {
-
+void MusicList::AddButton(const std::string& text, const tgui::Color& color, const std::function<void()>& onClick) const
+{
     const tgui::Button::Ptr button = tgui::Button::create(text);
 
     button->getRenderer()->setBackgroundColor(color);

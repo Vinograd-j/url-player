@@ -90,7 +90,6 @@ void MusicPanel::Open()
             _window->display();
         }
     }
-
 }
 
 void MusicPanel::Close()

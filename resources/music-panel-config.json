@@ -12,7 +12,7 @@
   "textLetterSize": [15],
   "text": ["Первая строка - название, вторая - ссылка"],
 
-  "titleTextBoxPosition": [175.0, 70.0],
+  "titleTextBoxPosition": [170.0, 70.0],
   "titleTextBoxSize": [166.6667, 30.0],
 
   "urlTextBoxPosition": [75, 110.0],
