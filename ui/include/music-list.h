@@ -24,7 +24,7 @@ public:
 
 public:
 
-    void AddButton(const std::string& text, const tgui::Color& color, const std::function<void()>& onClick) const;
+    void AddButton(const std::string& text, const tgui::Color& color, const std::function<void()>& onLeftClick, const std::function<void()>& onRightClick = std::function<void()>()) const;
 
     void AddToGui(tgui::Gui& gui) const { gui.add(_panel); }
 

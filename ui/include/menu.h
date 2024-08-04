@@ -1,11 +1,12 @@
 #pragma once
 
+#include <confirmation-window.h>
 #include <json-music.h>
 #include <json-menu-config.h>
 #include <memory>
 #include <music-panel.h>
 
-#include "music_list.h"
+#include "music-list.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <TGUI/Backend/SFML-Graphics.hpp>
 
@@ -16,6 +17,8 @@ private:
 
     std::unique_ptr<sf::RenderWindow> _window;
     std::unique_ptr<tgui::Gui> _gui;
+
+    std::unique_ptr<ConfirmationWindow> _deleteMusicDialog;
 
     JsonMenuConfig _config;
     JsonMusic _music;
@@ -65,5 +68,7 @@ private:
     void OnMusicPanelClosed();
 
     void OnSongChoise();
+
+    void OnDeleteMusic();
 
 };
