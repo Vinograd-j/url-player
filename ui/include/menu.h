@@ -1,6 +1,5 @@
 #pragma once
 
-#include <confirmation-window.h>
 #include <json-music.h>
 #include <json-menu-config.h>
 #include <memory>
@@ -17,8 +16,6 @@ private:
 
     std::unique_ptr<sf::RenderWindow> _window;
     std::unique_ptr<tgui::Gui> _gui;
-
-    std::unique_ptr<ConfirmationWindow> _deleteMusicDialog;
 
     JsonMenuConfig _config;
     JsonMusic _music;
@@ -68,7 +65,5 @@ private:
     void OnMusicPanelClosed();
 
     void OnSongChoise();
-
-    void OnDeleteMusic();
 
 };

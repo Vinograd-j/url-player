@@ -5,7 +5,6 @@ add_library(ui STATIC
         src/menu.cpp
         src/music-panel.cpp
         ui-config/src/json-music-panel-config.cpp
-        src/confirmation-window.cpp
 )
 
 target_include_directories(ui PUBLIC ${TGUI_INCLUDE_DIR} ${SFML_INCLUDE_DIR} include ${CMAKE_SOURCE_DIR}/json ui-config/include)
