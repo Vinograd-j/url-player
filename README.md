@@ -7,6 +7,7 @@
 # !!!
 #### *The program does not download anything, does not violate anyone's rights, it simply structures your compositions in the form of a list and helps you open them and listen to them in the background*
 
+#### *The program is made using graphic libraries that involve design by code. Therefore, the design will be quite primitive. I count on your understanding.*
 ------------
 
 
