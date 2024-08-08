@@ -1,7 +1,10 @@
 #pragma once
 
+#include <json-music.h>
 #include <TGUI/Backend/SFML-Graphics.hpp>
 #include <TGUI/Widgets/ScrollablePanel.hpp>
+
+#include "confirmation-window.h"
 
 class MusicList
 {
@@ -9,6 +12,14 @@ class MusicList
 private:
 
     tgui::ScrollablePanel::Ptr _panel;
+
+    tgui::Gui* _gui;
+
+    std::unique_ptr<ConfirmationWindow> _confirmationWindow;
+
+private:
+
+    JsonMusic* _musicStorage;
 
 private:
 
@@ -20,13 +31,16 @@ private:
 
 public:
 
-    explicit MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize);
+    explicit MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize, tgui::Gui* gui, JsonMusic* musicStorage);
 
 public:
 
-    void AddButton(const std::string& text, const tgui::Color& color, const std::function<void()>& onLeftClick, const std::function<void()>& onRightClick = std::function<void()>()) const;
+    void LoadMusic();
 
     void AddToGui(tgui::Gui& gui) const { gui.add(_panel); }
+
+    void ShowDeletionDialog(const Song& song);
+    void OnSongChosen(const Song& song);
 
 private:
 

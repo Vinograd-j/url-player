@@ -64,6 +64,4 @@ private:
 
     void OnMusicPanelClosed();
 
-    void OnSongChoise();
-
 };

@@ -33,14 +33,11 @@ void Menu::CreateButtons()
 void Menu::LoadSongsList()
 {
 
-    MenuConfig config = _config.DeserializeConfig();
+    const MenuConfig config = _config.DeserializeConfig();
 
-    _musicList = std::make_unique<MusicList>(config.GetMusicListSize(), config.GetMusicListPosition(), config.GetMusicListButtonSize());
+    _musicList = std::make_unique<MusicList>(config.GetMusicListSize(), config.GetMusicListPosition(), config.GetMusicListButtonSize(), &*_gui, &_music);
 
-    auto musicStorage = _music.DesirializeStorage();
-
-    for (const auto& song : musicStorage.GetSongs())
-        _musicList->AddButton(song.GetTitle(), tgui::Color::White, [this]() { Menu::OnSongChoise(); });
+    _musicList->LoadMusic();
 
     _musicList->AddToGui(*_gui);
 }
@@ -53,10 +50,6 @@ void Menu::OnMusicPanelClosed()
 void Menu::OpenMusicPanel()
 {
     _musicPanel.Open();
-}
-
-void Menu::OnSongChoise()
-{
 }
 
 void Menu::Open()
