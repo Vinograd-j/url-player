@@ -32,10 +32,9 @@ std::string StorageFile::ReadJson() const
 
     std::stringstream buffer;
     std::string line;
+
     while (std::getline(in, line))
-    {
         buffer << line << '\n';
-    }
 
     in.close();
 
@@ -46,6 +45,14 @@ std::string StorageFile::ReadJson() const
 
 void StorageFile::InitializeStorage() const
 {
+
+    std::filesystem::path filePath(_path);
+    std::filesystem::path dirPath = filePath.parent_path();
+
+    if (!exists(dirPath))
+        if (!create_directories(dirPath))
+            throw std::runtime_error("Cannot create the directory for the storage file.");
+
     if (!std::filesystem::exists(_path))
     {
         std::ofstream storageFile(_path);

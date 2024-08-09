@@ -31,7 +31,9 @@ public:
     const std::vector<Button>& GetButtons() const { return _buttons; }
 
     const tgui::Layout2d& GetMusicListSize() const { return _musicListSize; }
+
     const tgui::Layout2d& GetMusicListPosition() const { return _musicListPosition; }
+
     const tgui::Layout2d& GetMusicListButtonSize() const { return _musicListButtonSize; }
 
 };

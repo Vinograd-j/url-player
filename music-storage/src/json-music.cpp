@@ -19,8 +19,9 @@ MusicStorage JsonMusic::DesirializeStorage() const
 
 void JsonMusic::SerializeStorage(const MusicStorage& storage) const
 {
-
     nlohmann::json json;
+    json["songs"] = nlohmann::json::array();
+
     const std::vector<Song>& songs = storage.GetSongs();
 
     for (const auto& song : songs)
