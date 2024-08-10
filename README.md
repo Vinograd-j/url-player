@@ -10,7 +10,7 @@
 #### *The program is made using graphic libraries that involve design by code. Therefore, the design will be quite primitive. I count on your understanding.*
 ------------
 
-### How to build this project from sources:
+## How to build this project from sources:
 
 You should **download** and **build** two libs: [SFML](https://www.sfml-dev.org/download/sfml/2.6.1/ "SFML") and [TGUI](https://tgui.eu/download/ "TGUI")
 
