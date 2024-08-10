@@ -14,7 +14,8 @@
 
 You should **download** and **build** two libs: [SFML](https://www.sfml-dev.org/download/sfml/2.6.1/ "SFML") and [TGUI](https://tgui.eu/download/ "TGUI")
 
-Next, build a CMake project using this flags:  `-DSFML_PATH` - To specify the path in which SFML is built, **AND** `-DTGUI_PATH` - To specify the path in which SFML is buit.
+Next, build a CMake project using this flags:  `-DSFML_PATH` - To specify the path in which SFML is built, 
+**AND** `-DTGUI_PATH` - To specify the path in which SFML is buit.
 
 Then you can compile this project. 
 
