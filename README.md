@@ -12,15 +12,13 @@
 
 ## How to build this project from sources:
 
-You should **download** and **build** two libs: [SFML](https://www.sfml-dev.org/download/sfml/2.6.1/ "SFML") and [TGUI](https://tgui.eu/download/ "TGUI")
-
-Next, build a CMake project using this flags:  `-DSFML_PATH` - To specify the path in which SFML is built, 
-**AND** `-DTGUI_PATH` - To specify the path in which SFML is buit.
-
-Then you can compile this project. 
+1. Download this repository
+2. Create the build directory
+3. Call cmake with your generator without flags
+4. Compile the project with MSVC (because WebView2 will be assembled with this project, and it requires MSVC)
 
 ### What i used:
-**Compiler**: [MinGW x32](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.1.0-16.0.5-11.0.0-msvcrt-r5/winlibs-i686-posix-dwarf-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5.7z "MinGW x32 link")
+**Compiler**: MSVC
 
 **Generator**: MinGW Makefiles
 
@@ -28,8 +26,6 @@ Then you can compile this project.
 [SFML](https://www.sfml-dev.org/download/sfml/2.6.1/ "SFML") requests a compiler version specific to it. Check on the SFML website when downloading. Otherwise, the project will not build. I recommend using one version of the compiler for the entire project. You can use compiler I have mentioned above for **SFML 2.6.1**
 
 ------------
-
-
 
 ## What it looks like:
 
