@@ -22,9 +22,6 @@
 
 **Generator**: MinGW Makefiles
 
-### Pay attention!
-[SFML](https://www.sfml-dev.org/download/sfml/2.6.1/ "SFML") requests a compiler version specific to it. Check on the SFML website when downloading. Otherwise, the project will not build. I recommend using one version of the compiler for the entire project. You can use compiler I have mentioned above for **SFML 2.6.1**
-
 ------------
 
 ## What it looks like:
