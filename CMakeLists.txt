@@ -2,19 +2,41 @@ cmake_minimum_required(VERSION 3.28)
 project(url_player)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_GENERATOR_PLATFORM x86)
+
 set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set(SFML_DIR ${SFML_PATH})
-find_package(SFML REQUIRED COMPONENTS system window graphics PATHS ${SFML_DIR})
+include(FetchContent)
 
-set(TGUI_DIR ${TGUI_PATH})
-find_package(TGUI REQUIRED PATHS ${TGUI_DIR})
+FetchContent_Declare(
+        SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 2.6.1
+)
 
-set(TGUI_INCLUDE_DIR C:/libs/TGUI/include)
-set(SFML_INCLUDE_DIR C:/libs/SFML/include)
+FetchContent_Declare(
+        TGUI
+        GIT_REPOSITORY https://github.com/texus/TGUI.git
+        GIT_TAG 1.x
+)
+
+FetchContent_Declare(
+        wil
+        URL https://www.nuget.org/api/v2/package/Microsoft.Windows.ImplementationLibrary/1.0.211019.2
+        URL_HASH SHA1=FB082B22DC30C11CCDB118A0EB9B8A32E99765B1
+)
+
+FetchContent_Declare(
+        webview2
+        URL https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/1.0.1072.54
+        URL_HASH SHA1=aa8ae9db5015a9184011bb195efc5c8caa58a86b
+)
+
+include_directories(player SYSTEM "${wil_SOURCE_DIR}/include/")
+include_directories(player SYSTEM "${webview2_SOURCE_DIR}/build/native/include/")
+
+FetchContent_MakeAvailable(SFML TGUI wil webview2)
 
 add_executable(url_player WIN32 main.cpp)
 

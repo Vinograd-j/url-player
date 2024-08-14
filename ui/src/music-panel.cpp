@@ -58,7 +58,7 @@ void MusicPanel::CreateButton()
 
 void MusicPanel::OnSumbitButtonClicked()
 {
-    if (const Validator validator; validator.ValidateTitle(_titleInputBox->getText().toStdString()) && validator.ValidateURL(_urlInputBox->getText().toStdString()))
+    if (constexpr Validator validator; validator.ValidateTitle(_titleInputBox->getText().toStdString()) && validator.ValidateURL(_urlInputBox->getText().toStdString()))
     {
         auto musicStorage = _musicStorage.DesirializeStorage();
         musicStorage.AddSong(Song(_titleInputBox->getText().toStdString(), _urlInputBox->getText().toStdString()));

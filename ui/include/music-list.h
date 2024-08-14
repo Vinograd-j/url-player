@@ -5,6 +5,7 @@
 #include <TGUI/Widgets/ScrollablePanel.hpp>
 
 #include "confirmation-window.h"
+#include "../../url-player/include/player.h"
 
 class MusicList
 {
@@ -16,6 +17,8 @@ private:
     tgui::Gui* _gui;
 
     std::unique_ptr<ConfirmationWindow> _confirmationWindow;
+
+    Player _player;
 
 private:
 

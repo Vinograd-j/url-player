@@ -38,7 +38,9 @@ private:
 
 public:
 
-    explicit MusicPanel(const JsonMusicPanelConfig& config, const JsonMusic& musicStoragePath, const std::function<void()>& onClosed = std::function<void()>()) : _config(config), _musicStorage(musicStoragePath), _onClosed(onClosed) {}
+    explicit MusicPanel(const JsonMusicPanelConfig& config, const JsonMusic& musicStoragePath, const std::function<void()>& onClosed = std::function<void()>()) : _config(config),
+                                                                                                                                                                  _musicStorage(musicStoragePath),
+                                                                                                                                                                  _onClosed(onClosed) {}
 
     void Initialize();
 

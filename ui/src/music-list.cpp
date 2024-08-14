@@ -63,4 +63,5 @@ void MusicList::ShowDeletionDialog(const Song& song)
 
 void MusicList::OnSongChosen(const Song& song)
 {
+    _player.Open(song.GetURL());
 }
