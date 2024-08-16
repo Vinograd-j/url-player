@@ -1,5 +1,6 @@
 #include "music-list.h"
 
+#include <thread>
 #include <TGUI/Widgets/Button.hpp>
 
 #include "confirmation-window.h"
@@ -63,5 +64,9 @@ void MusicList::ShowDeletionDialog(const Song& song)
 
 void MusicList::OnSongChosen(const Song& song)
 {
-    _player.Open(song.GetURL());
+    std::wstring url(song.GetURL().size(), L'\0');
+    std::mbstowcs(&url[0], song.GetURL().c_str(), song.GetURL().size());
+
+
+    _player.Open(url);
 }

@@ -9,6 +9,8 @@ set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
 include(FetchContent)
 
+set(TGUI_BACKEND SFML_GRAPHICS)
+
 FetchContent_Declare(
         SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
@@ -33,10 +35,18 @@ FetchContent_Declare(
         URL_HASH SHA1=aa8ae9db5015a9184011bb195efc5c8caa58a86b
 )
 
-include_directories(player SYSTEM "${wil_SOURCE_DIR}/include/")
-include_directories(player SYSTEM "${webview2_SOURCE_DIR}/build/native/include/")
-
 FetchContent_MakeAvailable(SFML TGUI wil webview2)
+
+include_directories(SYSTEM "${wil_SOURCE_DIR}/include/")
+include_directories(SYSTEM "${webview2_SOURCE_DIR}/build/native/include/")
+
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(PLATFORM "x64")
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(PLATFORM "x86")
+endif()
+
+link_libraries("${webview2_SOURCE_DIR}/build/native/${PLATFORM}/WebView2LoaderStatic.lib")
 
 add_executable(url_player WIN32 main.cpp)
 
