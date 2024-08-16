@@ -7,14 +7,12 @@
 #include <wil/com.h>
 #include <wrl.h>
 
-void Player::Open(const std::wstring url) {
-    if (hWndWebView != NULL)
-        {
-        SendMessage(hWndWebView, WM_CLOSE, 0, 0);
-        hWndWebView = NULL;
-    }
+void Player::Open(const Song& song) {
+    Stop();
 
-    std::thread webViewThread([this, url]()
+    const std::string& url = song.GetURL();
+
+    std::thread webViewThread([&, url]()
     {
 
         hWndWebView = CreateWindowExW(
@@ -67,15 +65,15 @@ void Player::Open(const std::wstring url) {
                                 GetClientRect(hWndWebView, &bounds);
                                 webviewController->put_Bounds(bounds);
 
-                                webviewWindow->Navigate(url.c_str());
+                                webviewWindow->Navigate(std::wstring(url.begin(), url.end()).c_str());
 
                                 return S_OK;
                             })
                             .Get());
+
                     return S_OK;
                 })
                 .Get());
-
         MSG msg;
         while (GetMessage(&msg, nullptr, 0, 0))
         {
@@ -87,4 +85,13 @@ void Player::Open(const std::wstring url) {
     });
 
     webViewThread.detach();
+}
+
+void Player::Stop()
+{
+    if (hWndWebView != NULL)
+    {
+        SendMessage(hWndWebView, WM_CLOSE, 0, 0);
+        hWndWebView = NULL;
+    }
 }

@@ -27,7 +27,8 @@ void Menu::CreateButtons()
     _previousButton->AddToGui(*_gui);
     _addSongButton->AddToGui(*_gui);
 
-    _addSongButton->onPress([this]() { OpenMusicPanel(); });
+    _playButton->onPress([this] { _player.Stop(); });
+    _addSongButton->onPress([this] { OpenMusicPanel(); });
 }
 
 void Menu::LoadSongsList()
@@ -35,7 +36,7 @@ void Menu::LoadSongsList()
 
     const MenuConfig config = _config.DeserializeConfig();
 
-    _musicList = std::make_unique<MusicList>(config.GetMusicListSize(), config.GetMusicListPosition(), config.GetMusicListButtonSize(), &*_gui, &_music);
+    _musicList = std::make_unique<MusicList>(config.GetMusicListSize(), config.GetMusicListPosition(), config.GetMusicListButtonSize(), &*_gui, &_music, &_player);
 
     _musicList->LoadMusic();
 

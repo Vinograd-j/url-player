@@ -5,18 +5,19 @@
 
 #include "confirmation-window.h"
 
-MusicList::MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize, tgui::Gui* gui, JsonMusic* musicStorage)  :
+MusicList::MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize, tgui::Gui* gui, JsonMusic* musicStorage, Player* player)  :
                                                                                                                                                              _panel(tgui::ScrollablePanel::create(size)),
                                                                                                                                                              _size(size),
                                                                                                                                                              _position(std::move(position)),
-                                                                                                                                                             _buttonSize(std::move(buttonSize))
+                                                                                                                                                             _buttonSize(std::move(buttonSize)),
+                                                                                                                                                             _player(player)
 {
     _gui = gui;
     _musicStorage = musicStorage;
 
     _panel->setPosition(_position);
-    _panel->setHorizontalScrollbarPolicy(tgui::Scrollbar::Policy::Never);
-    _panel->setVerticalScrollbarPolicy(tgui::Scrollbar::Policy::Always);
+    _panel->getHorizontalScrollbar()->setPolicy(tgui::Scrollbar::Policy::Never);
+    _panel->getVerticalScrollbar()->setPolicy(tgui::Scrollbar::Policy::Always);
 }
 
 void MusicList::LoadMusic()
@@ -64,9 +65,5 @@ void MusicList::ShowDeletionDialog(const Song& song)
 
 void MusicList::OnSongChosen(const Song& song)
 {
-    std::wstring url(song.GetURL().size(), L'\0');
-    std::mbstowcs(&url[0], song.GetURL().c_str(), song.GetURL().size());
-
-
-    _player.Open(url);
+    _player->Open(song);
 }

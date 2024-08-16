@@ -22,6 +22,8 @@ private:
 
     MusicPanel _musicPanel;
 
+    Player _player;
+
 private:
 
     const int WINDOW_HEIGHT = 500;
@@ -44,7 +46,8 @@ public:
     explicit Menu(const JsonMusic& music, const JsonMenuConfig& config, const JsonMusicPanelConfig& musicPanelConfigPath) :
                                                                                                                             _config(config),
                                                                                                                             _music(music),
-                                                                                                                            _musicPanel(musicPanelConfigPath, music, [this](){ OnMusicPanelClosed(); }) {}
+                                                                                                                            _musicPanel(musicPanelConfigPath, music, [this](){ OnMusicPanelClosed(); }),
+                                                                                                                            _player() {}
 
 public:
 

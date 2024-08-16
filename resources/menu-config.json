@@ -3,23 +3,27 @@
     {
       "size": { "width": 70, "height": 25 },
       "position": { "x": 115, "y": 10 },
-      "text": "ON/OFF"
+      "text": "OFF"
     },
+
     {
       "size": { "width": 50, "height": 25 },
       "position": { "x": 200, "y": 10 },
       "text": "NEXT"
     },
+
     {
       "size": { "width": 50, "height": 25 },
       "position": { "x": 50, "y": 10 },
       "text": "PREV"
     },
+
     {
       "size": { "width": 150, "height": 25 },
       "position": { "x": 75, "y": 465 },
       "text": "ADD NEW SONG"
     }
+
   ],
 
   "musicListSize": [200.0, 333.333],

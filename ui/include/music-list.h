@@ -18,7 +18,7 @@ private:
 
     std::unique_ptr<ConfirmationWindow> _confirmationWindow;
 
-    Player _player;
+    Player* _player;
 
 private:
 
@@ -34,7 +34,7 @@ private:
 
 public:
 
-    explicit MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize, tgui::Gui* gui, JsonMusic* musicStorage);
+    explicit MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize, tgui::Gui* gui, JsonMusic* musicStorage, Player* player);
 
 public:
 
