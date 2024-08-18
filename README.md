@@ -27,7 +27,7 @@
 ## What it looks like:
 
 #### Main menu:
-![image](https://github.com/user-attachments/assets/b5c2034e-0ea6-4e2b-8c0d-4f34b366aa39)
+![image](https://github.com/user-attachments/assets/e4b86500-a396-4f97-ae5b-a8eb9215b9ee)
 
 #### Menu for adding new song:
 ![image](https://github.com/user-attachments/assets/a61bdaab-dc97-4376-a16a-34045fe10390)
