@@ -17,8 +17,6 @@ public:
 
     explicit Song(const nlohmann::json& json) : _title(json.at("title").get<std::string>()), _url(json.at("url").get<std::string>()) {}
 
-    Song() = default;
-
     nlohmann::json ToJson() const;
 
     const std::string& GetTitle() const { return _title; }

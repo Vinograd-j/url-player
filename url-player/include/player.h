@@ -1,5 +1,6 @@
 #pragma once
 #include <atomic>
+#include <condition_variable>
 #include <string>
 
 #include <WebView2.h>
@@ -9,10 +10,6 @@
 
 class Player
 {
-
-public:
-
-    explicit Player() = default;
 
 private:
 

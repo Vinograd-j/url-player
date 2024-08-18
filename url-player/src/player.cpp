@@ -8,22 +8,23 @@
 #include <wrl.h>
 
 void Player::Open(const Song& song) {
+
     Stop();
 
     const std::string& url = song.GetURL();
 
-    std::thread webViewThread([&, url]()
+    std::thread webViewThread([&, url]
     {
 
         hWndWebView = CreateWindowExW(
             0,
             L"STATIC",
             L"WebView Window",
-            WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+             WS_VISIBLE,
             CW_USEDEFAULT,
             CW_USEDEFAULT,
-            800,
-            600,
+            400,
+            300,
             nullptr,
             nullptr,
             GetModuleHandle(nullptr),
@@ -65,6 +66,22 @@ void Player::Open(const Song& song) {
                                 GetClientRect(hWndWebView, &bounds);
                                 webviewController->put_Bounds(bounds);
 
+                                EventRegistrationToken token;
+
+                                webviewWindow->add_NavigationCompleted(
+                                    Microsoft::WRL::Callback<ICoreWebView2NavigationCompletedEventHandler>(
+                                        [=](ICoreWebView2* sender, ICoreWebView2NavigationCompletedEventArgs* args) -> HRESULT
+                                        {
+                                            ShowWindow(hWndWebView, SW_SHOWMINIMIZED);
+
+                                            webviewWindow->ExecuteScript(std::wstring(L"document.querySelector('video').play();").c_str(), nullptr);
+
+                                            const std::wstring autoplayJs(L"const toggleButton = document.querySelector('div.ytp-autonav-toggle-button'); if (toggleButton) { toggleButton.click(); }; ");
+                                            webviewWindow->ExecuteScript(autoplayJs.c_str(), nullptr);
+
+                                            return S_OK;
+                                        }).Get(), &token);
+
                                 webviewWindow->Navigate(std::wstring(url.begin(), url.end()).c_str());
 
                                 return S_OK;
@@ -74,6 +91,7 @@ void Player::Open(const Song& song) {
                     return S_OK;
                 })
                 .Get());
+
         MSG msg;
         while (GetMessage(&msg, nullptr, 0, 0))
         {
