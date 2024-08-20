@@ -1,8 +1,6 @@
 #pragma once
-#include <atomic>
-#include <condition_variable>
-#include <string>
 
+#include <string>
 #include <WebView2.h>
 #include <wil/com.h>
 
@@ -19,7 +17,25 @@ private:
 
 public:
 
+    explicit Player();;
+
+public:
+
     void Open(const Song& song);
+
+    void Init();
+
+    void Loop();
+
     void Stop();
+
+private:
+    
+     HRESULT OnEnvironmentCreated(HRESULT result, ICoreWebView2Environment* env, const std::string& url);
+
+     HRESULT OnControllerCreated(HRESULT result, ICoreWebView2Controller* controller, const std::string& url);
+
+     HRESULT OnNavigationCompleted(ICoreWebView2* sender, ICoreWebView2NavigationCompletedEventArgs* args);
+
 
 };
