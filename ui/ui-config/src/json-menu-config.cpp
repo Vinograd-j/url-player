@@ -1,7 +1,7 @@
 #include "json-menu-config.h"
 
 #include "button.h"
-#include "json.hpp"
+#include "nlohmann/json.hpp"
 
 void JsonMenuConfig::SerializeConfig(const MenuConfig& config) const
 {

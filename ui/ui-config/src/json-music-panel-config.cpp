@@ -1,5 +1,7 @@
 #include "json-music-panel-config.h"
 
+#include <nlohmann/json.hpp>
+
 void JsonMusicPanelConfig::SerializeConfig(const MusicPanelConfig& config) const
 {
     nlohmann::json json;

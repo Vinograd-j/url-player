@@ -11,4 +11,4 @@ add_library(ui STATIC
 
 target_include_directories(ui PUBLIC ${TGUI_INCLUDE_DIR} ${SFML_INCLUDE_DIR} include ${CMAKE_SOURCE_DIR}/json ui-config/include)
 
-target_link_libraries(ui PRIVATE tgui sfml-system sfml-graphics sfml-window sfml-main music-storage json-storage player)
+target_link_libraries(ui PRIVATE tgui sfml-system sfml-graphics sfml-window sfml-main music-storage json-storage player nlohmann_json::nlohmann_json)

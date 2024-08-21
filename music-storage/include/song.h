@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "../../storage/json/json.hpp"
+#include "nlohmann/json.hpp"
 
 class Song
 {

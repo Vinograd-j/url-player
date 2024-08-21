@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
+#set(CMAKE_VERBOSE_MAKEFILE ON)
 
 include(FetchContent)
 
@@ -35,7 +35,12 @@ FetchContent_Declare(
         URL_HASH SHA1=aa8ae9db5015a9184011bb195efc5c8caa58a86b
 )
 
-FetchContent_MakeAvailable(SFML TGUI wil webview2)
+FetchContent_Declare(
+        nlohmann-json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+)
+
+FetchContent_MakeAvailable(SFML TGUI wil webview2 nlohmann-json)
 
 include_directories(SYSTEM "${wil_SOURCE_DIR}/include/")
 include_directories(SYSTEM "${webview2_SOURCE_DIR}/build/native/include/")
