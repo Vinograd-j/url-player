@@ -46,8 +46,7 @@ public:
     explicit Menu(const JsonMusic& music, const JsonMenuConfig& config, const JsonMusicPanelConfig& musicPanelConfigPath) :
                                                                                                                             _config(config),
                                                                                                                             _music(music),
-                                                                                                                            _musicPanel(musicPanelConfigPath, music, [this](){ OnMusicPanelClosed(); }),
-                                                                                                                            _player() {}
+                                                                                                                            _musicPanel(musicPanelConfigPath, music, [this](){ OnMusicPanelClosed(); }) {}
 
 public:
 
