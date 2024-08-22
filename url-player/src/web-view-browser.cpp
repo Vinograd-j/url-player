@@ -1,5 +1,6 @@
 #include "web-view-browser.h"
 
+#include <iostream>
 #include <wrl/event.h>
 
 #include "../js-storage/include/js-reader.h"
@@ -69,12 +70,21 @@ void WebViewBrowser::Initialize()
 
 HRESULT WebViewBrowser::OnNavigationCompleted(ICoreWebView2* sender, ICoreWebView2NavigationCompletedEventArgs* args)
 {
-    const std::wstring autoplayJs = _jsReader.ReadJsScript("autoplay.js");
-    _webViewWindow->ExecuteScript(autoplayJs.c_str(), nullptr);
 
-    const std::wstring checkVideoLoadedJs = _jsReader.ReadJsScript("starter.js");
+    BOOL isSuccess;
+    args->get_IsSuccess(&isSuccess);
 
-    _webViewWindow->ExecuteScript(checkVideoLoadedJs.c_str(), nullptr);
+    if (isSuccess)
+    {
+        const std::wstring autoplayJs = _jsReader.ReadJsScript("autoplay.js");
+        _webViewWindow->ExecuteScript(autoplayJs.c_str(), nullptr);
+
+        const std::wstring checkVideoLoadedJs = _jsReader.ReadJsScript("starter.js");
+
+        HRESULT execute_script = _webViewWindow->ExecuteScript(checkVideoLoadedJs.c_str(), nullptr);
+
+        std::cout << execute_script;
+    }
 
     return S_OK;
 }
