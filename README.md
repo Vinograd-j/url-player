@@ -14,7 +14,7 @@
 
 1. Download this repository
 2. Create the build directory
-3. Call cmake with your generator without flags
+3. Call cmake with your generator without flags (all dependencies will be downloaded and built with this project)
 4. Compile the project with MSVC (because WebView2 will be assembled with this project, and it requires MSVC)
 
 ### What i used:
