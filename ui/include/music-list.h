@@ -32,6 +32,10 @@ private:
 
     tgui::Layout2d _buttonSize;
 
+private:
+
+    std::unique_ptr<Song> _lastPlayed;
+
 public:
 
     explicit MusicList(const tgui::Layout2d& size, const tgui::Layout2d& position, const tgui::Layout2d& buttonSize, tgui::Gui* gui, JsonMusic* musicStorage, Player* player);
@@ -44,6 +48,9 @@ public:
 
     void ShowDeletionDialog(const Song& song);
     void OnSongChosen(const Song& song);
+
+    void PlayNext();
+    void PlayPrevious();
 
 private:
 

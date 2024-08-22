@@ -17,6 +17,8 @@ public:
 
     explicit Song(const nlohmann::json& json) : _title(json.at("title").get<std::string>()), _url(json.at("url").get<std::string>()) {}
 
+    bool operator==(const Song& other) const;
+
     nlohmann::json ToJson() const;
 
     const std::string& GetTitle() const { return _title; }

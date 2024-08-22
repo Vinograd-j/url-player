@@ -66,4 +66,25 @@ void MusicList::ShowDeletionDialog(const Song& song)
 void MusicList::OnSongChosen(const Song& song)
 {
     _player->Open(song);
+    _lastPlayed = std::make_unique<Song>(song);
+}
+
+void MusicList::PlayNext()
+{
+    auto songs = _musicStorage->DesirializeStorage().GetSongs();
+    std::vector<Song>::iterator song = std::find(songs.begin(), songs.end(), *_lastPlayed);
+
+    auto nextSong = song != songs.end() - 1 ? song + 1 : songs.begin();
+
+    OnSongChosen(*nextSong);
+}
+
+void MusicList::PlayPrevious()
+{
+    auto songs = _musicStorage->DesirializeStorage().GetSongs();
+    std::vector<Song>::iterator song = std::find(songs.begin(), songs.end(), *_lastPlayed);
+
+    auto previousSong = song != songs.begin() ? song - 1 : songs.end() - 1;
+
+    OnSongChosen(*previousSong);
 }

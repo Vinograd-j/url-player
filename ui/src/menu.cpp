@@ -29,6 +29,9 @@ void Menu::CreateButtons()
 
     _playButton->onPress([this] { _player.Stop(); });
     _addSongButton->onPress([this] { OpenMusicPanel(); });
+
+    _nextButton->onPress([this] { _musicList->PlayNext(); });
+    _previousButton->onPress([this]{ _musicList->PlayPrevious(); });
 }
 
 void Menu::LoadSongsList()
