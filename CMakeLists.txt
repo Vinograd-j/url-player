@@ -36,12 +36,13 @@ FetchContent_Declare(
 )
 
 FetchContent_Declare(
-        nlohmann-json
+        json
         GIT_REPOSITORY https://github.com/nlohmann/json.git
 )
 
-FetchContent_MakeAvailable(SFML TGUI wil webview2 nlohmann-json)
+FetchContent_MakeAvailable(SFML TGUI wil webview2 json)
 
+include_directories(${json_SOURCE_DIR}/include)
 include_directories(SYSTEM "${wil_SOURCE_DIR}/include/")
 include_directories(SYSTEM "${webview2_SOURCE_DIR}/build/native/include/")
 

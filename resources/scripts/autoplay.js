@@ -15,4 +15,5 @@ function checkVideoReady() {
         setTimeout(checkVideoReady, DELAY_TIME);
     }
 }
+
 checkVideoReady();
