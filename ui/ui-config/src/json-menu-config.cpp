@@ -1,6 +1,7 @@
 #include "json-menu-config.h"
 
 #include "button.h"
+#include "ui-json-serializer.h"
 #include "nlohmann/json.hpp"
 
 void JsonMenuConfig::SerializeConfig(const MenuConfig& config) const
@@ -11,9 +12,11 @@ void JsonMenuConfig::SerializeConfig(const MenuConfig& config) const
     for (const auto& button : buttons)
         json["buttons"].push_back(button.ToJson());
 
-    json["musicListSize"] = { config.GetMusicListSize().x.getValue(), config.GetMusicListSize().y.getValue() };
-    json["musicListPosition"] = { config.GetMusicListPosition().x.getValue(), config.GetMusicListPosition().y.getValue() };
-    json["musicListButtonSize"] = { config.GetMusicListButtonSize().x.getValue(), config.GetMusicListButtonSize().y.getValue() };
+    UiJsonSerializer jsonSerilizer;
+
+    jsonSerilizer.SerializeLayout2d(json, "musicListSize", config.GetMusicListSize());
+    jsonSerilizer.SerializeLayout2d(json, "musicListPosition", config.GetMusicListPosition());
+    jsonSerilizer.SerializeLayout2d(json, "musicListButtonSize", config.GetMusicListButtonSize());
 
     _storage.RewriteJson(json.dump());
 }
@@ -24,22 +27,17 @@ MenuConfig JsonMenuConfig::DeserializeConfig() const
 
     std::vector<Button> buttons;
 
-    tgui::Layout2d musicListSize;
-    tgui::Layout2d musicListPosition;
-    tgui::Layout2d musicListButtonSize;
-
     if (!json.empty() && json.contains("buttons") && json["buttons"].is_array())
         for (int i = 0; i < json["buttons"].size(); ++i)
             buttons.push_back(Button(json["buttons"][i]));
 
-    if (json.contains("musicListSize") && json["musicListSize"].is_array())
-        musicListSize = tgui::Layout2d{ json["musicListSize"][0].get<float>(), json["musicListSize"][1].get<float>() };
+    UiJsonSerializer jsonSerializer;
 
-    if (json.contains("musicListPosition") && json["musicListPosition"].is_array())
-        musicListPosition = tgui::Layout2d{ json["musicListPosition"][0].get<float>(), json["musicListPosition"][1].get<float>() };
+    tgui::Layout2d musicListSize = jsonSerializer.DeserializeLayout2d(json, "musicListSize");
 
-    if (json.contains("musicListButtonSize") && json["musicListButtonSize"].is_array())
-        musicListButtonSize = tgui::Layout2d{ json["musicListButtonSize"][0].get<float>(), json["musicListButtonSize"][1].get<float>() };
+    tgui::Layout2d musicListPosition = jsonSerializer.DeserializeLayout2d(json, "musicListPosition");
+
+    tgui::Layout2d musicListButtonSize = jsonSerializer.DeserializeLayout2d(json, "musicListButtonSize");
 
     return MenuConfig( buttons, musicListSize, musicListPosition, musicListButtonSize);
 }

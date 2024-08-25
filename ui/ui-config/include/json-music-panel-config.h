@@ -20,10 +20,4 @@ public:
 
     MusicPanelConfig DeserializeConfig() const;
 
-private:
-
-    void SerializeLayout2d(nlohmann::json& json, const std::string& key, const tgui::Layout2d& position) const;
-
-    tgui::Layout2d DeserializeLayout2d(const nlohmann::json& json, const std::string& key) const;
-
 };
