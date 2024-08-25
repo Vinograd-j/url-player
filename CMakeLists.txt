@@ -35,9 +35,8 @@ FetchContent_Declare(
         URL_HASH SHA1=aa8ae9db5015a9184011bb195efc5c8caa58a86b
 )
 
-FetchContent_Declare(
-        json
-        GIT_REPOSITORY https://github.com/nlohmann/json.git
+FetchContent_Declare(json
+        URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
 )
 
 FetchContent_MakeAvailable(SFML TGUI wil webview2 json)

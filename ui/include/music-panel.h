@@ -66,6 +66,8 @@ private:
 
         bool ValidateTitle(const std::string& string) const;
 
+        bool IsExists(const std::vector<Song>& songs, const Song& song) const;
+
     };
 
 };

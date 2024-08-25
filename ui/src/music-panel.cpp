@@ -58,9 +58,13 @@ void MusicPanel::CreateButton()
 
 void MusicPanel::OnSumbitButtonClicked()
 {
-    if (constexpr Validator validator; validator.ValidateTitle(_titleInputBox->getText().toStdString()) && validator.ValidateURL(_urlInputBox->getText().toStdString()))
+    auto musicStorage = _musicStorage.DesirializeStorage();
+
+    auto titleInputBox = _titleInputBox->getText().toStdString();
+    auto urlInputBox = _urlInputBox->getText().toStdString();
+
+    if (constexpr Validator validator; validator.ValidateTitle(titleInputBox) && validator.ValidateURL(urlInputBox) && !validator.IsExists(musicStorage.GetSongs(), Song(titleInputBox, urlInputBox)))
     {
-        auto musicStorage = _musicStorage.DesirializeStorage();
         musicStorage.AddSong(Song(_titleInputBox->getText().toStdString(), _urlInputBox->getText().toStdString()));
         _musicStorage.SerializeStorage(musicStorage);
     }
@@ -110,4 +114,11 @@ bool MusicPanel::Validator::ValidateURL(const std::string& string) const
 bool MusicPanel::Validator::ValidateTitle(const std::string& string) const
 {
     return !string.empty();
+}
+
+bool MusicPanel::Validator::IsExists(const std::vector<Song>& songs, const Song& song) const
+{
+    return std::any_of(songs.begin(), songs.end(), [&song](const Song& s) {
+        return s.GetTitle() == song.GetTitle() || s.GetURL() == song.GetURL();
+    });
 }
