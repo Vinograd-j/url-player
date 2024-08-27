@@ -20,7 +20,7 @@
 ### What i used:
 **Compiler**: MSVC
 
-**Generator**: MinGW Makefiles
+**Generator**: Visual Studio 17 2022
 
 ------------
 
